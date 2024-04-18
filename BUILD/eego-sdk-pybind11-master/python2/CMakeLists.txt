@@ -1,0 +1,28 @@
+find_package(Python2 COMPONENTS Development)
+if(Python2_FOUND)
+  add_library(eego_sdk2 MODULE
+    ../eego_sdk.cc
+  )
+  set_target_properties(eego_sdk2 PROPERTIES OUTPUT_NAME eego_sdk)
+  target_include_directories(eego_sdk2 SYSTEM PRIVATE ${Python2_INCLUDE_DIRS})
+  target_include_directories(eego_sdk2 SYSTEM PRIVATE ${EEGO_SDK_ROOT})
+  target_include_directories(eego_sdk2 SYSTEM PRIVATE ${PYTHON_INCLUDE_DIRS})
+  target_include_directories(eego_sdk2 SYSTEM PRIVATE ${PYBIND11_INCLUDE_DIR})
+  target_compile_definitions(eego_sdk2 PRIVATE EEGO_SDK_BIND_STATIC)
+  target_compile_definitions(eego_sdk2 PRIVATE _UNICODE)
+  target_Link_libraries(eego_sdk2 PRIVATE ${Python2_LIBRARIES})
+  target_link_libraries(eego_sdk2 PRIVATE ${EEGO_SDK_LIBRARY})
+  install(TARGETS eego_sdk2 DESTINATION share/eego-sdk-pybind11/python2)
+  if(UNIX)
+    set_target_properties(eego_sdk2 PROPERTIES PREFIX "")
+
+    get_filename_component(EEGO_SDK_LIBRARY_DIR ${EEGO_SDK_LIBRARY} DIRECTORY)
+    install(FILES ${EEGO_SDK_LIBRARY_DIR}/libeego-SDK.so DESTINATION share/eego-sdk-pybind11/python2)
+  endif()
+  if(WIN32)
+    set_target_properties(eego_sdk2 PROPERTIES SUFFIX .pyd)
+
+    get_filename_component(EEGO_SDK_LIBRARY_DIR ${EEGO_SDK_LIBRARY} DIRECTORY)
+    install(FILES ${EEGO_SDK_LIBRARY_DIR}/eego-SDK.dll DESTINATION share/eego-sdk-pybind11/python2)
+  endif()
+endif()

@@ -1,0 +1,1 @@
+set(EEGO_SDK_ZIP C:/Users/vatru/OneDrive/Documents/eego/SDK/DEMO/eego_sdk.zip)

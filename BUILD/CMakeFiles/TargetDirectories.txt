@@ -1,0 +1,6 @@
+C:/Users/david/Desktop/DEMO_SDK/BUILD/CMakeFiles/INSTALL.dir
+C:/Users/david/Desktop/DEMO_SDK/BUILD/CMakeFiles/ALL_BUILD.dir
+C:/Users/david/Desktop/DEMO_SDK/BUILD/CMakeFiles/ZERO_CHECK.dir
+C:/Users/david/Desktop/DEMO_SDK/BUILD/python2/CMakeFiles/INSTALL.dir
+C:/Users/david/Desktop/DEMO_SDK/BUILD/python3/CMakeFiles/eego_sdk3.dir
+C:/Users/david/Desktop/DEMO_SDK/BUILD/python3/CMakeFiles/INSTALL.dir

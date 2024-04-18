@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\e00cec4c020393dc971299d6583682e6\eego_sdk-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\2148a77bce28c2d39f1285db0be3da91\eego_sdk-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\6c17d4b9f9b491e3e72cda66d58336d1\eego_sdk-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-subbuild\CMakeFiles\eego_sdk-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B8B6F25C-6EDE-30E4-8AE5-A62F375590D7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

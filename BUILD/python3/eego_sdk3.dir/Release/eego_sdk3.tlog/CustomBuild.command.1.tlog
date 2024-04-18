@@ -1,0 +1,10 @@
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\EEGO-SDK-PYBIND11-MASTER\PYTHON3\CMAKELISTS.TXT
+setlocal
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/david/Desktop/DEMO_SDK/BUILD/eego-sdk-pybind11-master -BC:/Users/david/Desktop/DEMO_SDK/BUILD --check-stamp-file C:/Users/david/Desktop/DEMO_SDK/BUILD/python3/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

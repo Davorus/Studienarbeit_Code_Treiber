@@ -1,0 +1,6 @@
+# CMake generation dependency list for this directory.
+C:/Strawberry/c/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake
+C:/Strawberry/c/share/cmake-3.26/Modules/FindPackageMessage.cmake
+C:/Strawberry/c/share/cmake-3.26/Modules/FindPython/Support.cmake
+C:/Strawberry/c/share/cmake-3.26/Modules/FindPython3.cmake
+C:/Users/david/Desktop/DEMO_SDK/BUILD/eego-sdk-pybind11-master/python3/CMakeLists.txt

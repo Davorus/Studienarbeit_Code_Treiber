@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/eego_sdk-populate"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/6c17d4b9f9b491e3e72cda66d58336d1/eego_sdk-populate.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/2148a77bce28c2d39f1285db0be3da91/eego_sdk-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/e00cec4c020393dc971299d6583682e6/eego_sdk-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"eego_sdk-populate"
+		],
+		"name" : "eego_sdk-populate"
+	}
+}

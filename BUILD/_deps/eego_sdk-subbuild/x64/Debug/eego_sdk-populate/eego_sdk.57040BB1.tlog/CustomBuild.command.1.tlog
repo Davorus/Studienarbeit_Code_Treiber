@@ -1,0 +1,150 @@
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-MKDIR.RULE
+setlocal
+C:\Strawberry\c\bin\cmake.exe -Dcfgdir=/Debug -P C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/tmp/eego_sdk-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-DOWNLOAD.RULE
+setlocal
+cd C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -P C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/verify-eego_sdk-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -P C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/extract-eego_sdk-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-UPDATE.RULE
+setlocal
+C:\Strawberry\c\bin\cmake.exe -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-update
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-PATCH.RULE
+setlocal
+C:\Strawberry\c\bin\cmake.exe -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-CONFIGURE.RULE
+setlocal
+cd C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-BUILD.RULE
+setlocal
+cd C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-INSTALL.RULE
+setlocal
+cd C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\E00CEC4C020393DC971299D6583682E6\EEGO_SDK-POPULATE-TEST.RULE
+setlocal
+cd C:\Users\david\Desktop\DEMO_SDK\BUILD\_deps\eego_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\2148A77BCE28C2D39F1285DB0BE3DA91\EEGO_SDK-POPULATE-COMPLETE.RULE
+setlocal
+C:\Strawberry\c\bin\cmake.exe -E make_directory C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/Debug/eego_sdk-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+C:\Strawberry\c\bin\cmake.exe -E touch C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/eego_sdk-populate-prefix/src/eego_sdk-populate-stamp/Debug/eego_sdk-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKEFILES\6C17D4B9F9B491E3E72CDA66D58336D1\EEGO_SDK-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAVID\DESKTOP\DEMO_SDK\BUILD\_DEPS\EEGO_SDK-SUBBUILD\CMAKELISTS.TXT
+setlocal
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild -BC:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild --check-stamp-file C:/Users/david/Desktop/DEMO_SDK/BUILD/_deps/eego_sdk-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
