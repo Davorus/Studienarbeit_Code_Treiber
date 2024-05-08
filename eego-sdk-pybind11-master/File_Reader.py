@@ -9,4 +9,4 @@ class File_Reader():
         self.file_ptr = open("eeg_simulation_data.txt", "r")
 
     def read_line_from_file(self):
-        pd.
+        pd.read_csv()
