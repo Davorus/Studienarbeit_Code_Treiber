@@ -1,6 +1,7 @@
 import matplotlib as mplt
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
+from collections import deque
 
 """ Visualizer Klasse
 Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll diese nicht machen, nur plotten und eine schöne Oberfläche bieten
@@ -8,14 +9,21 @@ Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll 
 
 class Visualizer():
     def __init__(self):
-        self.fig, self.ax = plt.subplots()
+        self.que: list = []
+        self.que = deque(maxlen=40)
 
     def visualize(self, data):
-        self.graph = self.ax.plot(data, color="g")[0]
-        plt.ylim(0, 10)
-        def update(frame):
-            self.graph.set_xdata(data)
-            self.graph.set_ydata(3)
-            plt.xlim(data[1], data[0])
-        anim = FuncAnimation(self.fig, update, frames=None)
-        plt.show()
+        # appending data
+        self.que.append(data)
+
+        # plotting
+        plt.plot(self.que)
+        plt.scatter(range(len(self.que)), self.que)
+
+        # y axis range
+        plt.ylim(-1, 1)
+
+        # draw, pause and clear
+        plt.draw()
+        plt.pause(0.1)
+        plt.clf()

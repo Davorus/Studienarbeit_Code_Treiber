@@ -19,9 +19,8 @@ class File_Reader():
         for line in pd.read_csv("./eeg_simulation_data.txt", sep=" ", chunksize=1, header=None): # now it should read from the simulation stream
             # print(line) # [] indexing possible
             logger.info(f"{line}")
-            self.va.visualize(line)
+            self.va.visualize(line[1]) # 1 um es zu testen, kann jeglicher Index sein
             time.sleep(0.1)
-            
 
 
 if __name__ == "__main__":
