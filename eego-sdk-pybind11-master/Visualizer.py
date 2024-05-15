@@ -8,11 +8,28 @@ Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll 
 
 class Visualizer():
     def __init__(self):
-        # visualized alpha que
+        """
+        visualized alpha que
+        all data received for alpha
+        """
         self.que_alpha = []
+        self.alpha_data = []
 
-        # visualized bet que
+        """
+        visualized beta que
+        all data received for beta
+        """
         self.que_beta = []
+        self.beta_data = []
+
+        # save data amount as array for ticks in x-axe
+        self.data_for_ticks = []
+
+        # visualized data index
+        self.data_index = []
+        
+        # for saving the length of data_for_ticks
+        self.data_amount = 0
 
         # boundary on how long the array should be
         self.max_data_length = 40 
@@ -35,8 +52,8 @@ class Visualizer():
         self.plot_beta.clear()
 
         # plot all data
-        self.plot_alpha.plot(self.que_alpha, color='b')
-        self.plot_beta.plot(self.que_beta, color='r')
+        self.plot_alpha.plot(self.alpha_data, color='b')
+        self.plot_beta.plot(self.beta_data, color='r')
 
         # y axis range for alpha subplot
         self.plot_alpha.set_ylim(-1, 1)
@@ -59,19 +76,32 @@ class Visualizer():
         """
         1. Check for array length, if it gets too long the plot-process will turn out too slow
         """
-        # appending alpha array
+        # appending alpha array and data index
         if len(self.que_alpha) > self.max_data_length:
+            # alpha
             self.que_alpha.pop(0)
             self.que_alpha.append(alpha)
+            self.alpha_data.append(alpha)
+
+            # data index
+            self.data_index.pop(0)
+            self.data_index.append(data_number)
         else:
+            # alpha
             self.que_alpha.append(alpha)
+            self.alpha_data.append(alpha)
+
+            # data index
+            self.data_index.append(data_number)
         
         # appending beta array
         if len(self.que_beta) > self.max_data_length:
             self.que_beta.pop(0)
             self.que_beta.append(beta)
+            self.beta_data.append(beta)
         else:
             self.que_beta.append(beta)
+            self.beta_data.append(beta)
         
         """
         2. Clear the subplots before drawing on them, they have to be reset with the data representation as it bugs then
@@ -102,16 +132,9 @@ class Visualizer():
 
         # y axis range beta
         self.plot_beta.set_ylim(-1, 1)
-
-        # # set x axis ticks
-        # if data_number <= 40:
-        #     x_ticks = np.arange(0, data_number, 1)
-        #     x_labels = [f"{x}" for x in x_ticks]
-        # else:
-        #     x_ticks = np.arange(data_number-40, data_number, 1)
-        #     x_labels = [f"{x}" for x in x_ticks]
-        # self.plot_alpha.set_xticks(x_ticks, labels=x_labels)
-        # self.plot_beta.set_xticks(x_ticks, labels=x_labels)
+        
+        # refresh value of data_amount
+        self.data_amount = len(self.data_for_ticks)
 
         """
         4. Now let it plot
@@ -130,8 +153,15 @@ class Visualizer():
         self.figure.canvas.flush_events()
         plt.pause(0.1)
 
+        # set x axis ticks
+
+        self.plot_alpha.set_xticklabels(str(self.data_index))
+        
+        self.plot_beta.set_xticklabels(str(self.data_index))
+
+
     def save_plot(self):
         # save plot as pdf
         pdf = PdfPages("Messung.pdf")
-        pdf.savefig()
+        pdf.savefig(self.figure)
         pdf.close()

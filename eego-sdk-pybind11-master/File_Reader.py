@@ -26,10 +26,13 @@ class File_Reader():
         # show plot after saving
         self.va.show_plot()
 
+        # after measuring is done save plot
+        self.va.save_plot()
+
 if __name__ == "__main__":
     # define amount of data that shall be simulated
     ds = Data_Simulator()
-    ds.write_simulation_data(50)
+    ds.write_simulation_data(100)
 
     # read data and visualize it
     fr = File_Reader()
