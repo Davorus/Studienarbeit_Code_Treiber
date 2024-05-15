@@ -26,4 +26,4 @@ class Data_Simulator():
 
 if __name__ == "__main__":
     ds = Data_Simulator()
-    ds.write_simulation_data(4869)
+    ds.write_simulation_data(200)
