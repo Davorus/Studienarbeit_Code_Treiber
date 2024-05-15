@@ -1,7 +1,7 @@
 import pandas as pd
 import time
 from loguru import logger
-from Visualizer import *
+from Visualizer import Visualizer
 
 """ file_reader Klasse
 Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll diese nicht machen, nur plotten
@@ -20,7 +20,7 @@ class File_Reader():
             # print(line) # [] indexing possible
             logger.info(f"{line}")
             self.va.visualize(line[1]) # 1 um es zu testen, kann jeglicher Index sein
-            time.sleep(0.1)
+            # time.sleep(0.1)
 
 
 if __name__ == "__main__":
