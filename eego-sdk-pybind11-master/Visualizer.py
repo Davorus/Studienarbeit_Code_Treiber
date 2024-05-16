@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
+from matplotlib import cm
 
 """ Visualizer Klasse
 Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll diese nicht machen, nur plotten und eine schöne Oberfläche bieten
@@ -34,14 +35,33 @@ class Visualizer():
         # boundary on how long the array should be
         self.max_data_length = 40 
 
-        # plot settings
+        # live plot settings
         self.figure, (self.plot_alpha, self.plot_beta) = plt.subplots(2, 1)
         self.figure.canvas.manager.set_window_title("Live Darstellung - EEG Messung")
         self.figure.tight_layout()
         self.figure.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9, wspace=0.4, hspace=0.4)
 
+        # waterfall plot settings
+        self.waterfall_fig = plt.figure()
+        self.waterfall_ax = self.waterfall_fig.add_subplot(projection="3d")
+        self.waterfall_fig.canvas.manager.set_window_title("3D Darstellung - EEG Messung")
+
+    def plot_2d_in_3d(self, x, y, z):
+        self.waterfall_ax.plot(x, y, zs=z, zdir="z")
+        _2d_col_obj = self.waterfall_ax.fill_between(x, 0.5, y, step = "pre", alpha = 0.1)
+        self.waterfall_ax.add_collections3d(_2d_col_obj, zs = z, zdir = "z")
+
     def waterfall_3D_plot(self):
-        pass
+        # plot data points in 3D
+        for z in range(0, self.data_amount, 1):
+            self.plot_2d_in_3d(self.alpha_data, self.beta_data, z)
+            
+        # set waterfall labels
+        self.waterfall_ax.set_xlabel("Dateneinträge alpha")
+        self.waterfall_ax.set_ylabel("Dateneinträge beta")
+        self.waterfall_ax.set_zlabel("Frequenzgang")
+
+        self.waterfall_ax.plot()
 
     def show_plot(self):
         """

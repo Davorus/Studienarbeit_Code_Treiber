@@ -19,13 +19,11 @@ class File_Reader():
         for line in pd.read_csv("./eeg_simulation_data.txt", sep=" ", chunksize=1, header=None): # now it should read from the simulation stream
             # print(line) # [] indexing possible
             logger.info(f"{line}")
-            self.va.visualize(line[1], line[2], line[9]) # 1 um es zu testen, kann jeglicher Index sein
-            # time.sleep(0.1)
-        # after measuring is done save plot
-        self.va.save_plot()
-        # show plot after saving
-        self.va.show_plot()
+            self.va.visualize(line[1], line[2], line[9]) 
 
+        self.va.show_plot()
+        self.va.waterfall_3D_plot()
+        
         # after measuring is done save plot
         self.va.save_plot()
 
