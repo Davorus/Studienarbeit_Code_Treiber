@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
 from matplotlib import cm
+from typing import Final
 
 """ Visualizer Klasse
 Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll diese nicht machen, nur plotten und eine schöne Oberfläche bieten
@@ -33,7 +34,7 @@ class Visualizer():
         self.data_amount = 0
 
         # boundary on how long the array should be
-        self.max_data_length = 40 
+        self.max_data_length: Final[int] = 40 
 
         # live plot settings
         self.figure, (self.plot_alpha, self.plot_beta) = plt.subplots(2, 1)
@@ -54,7 +55,7 @@ class Visualizer():
     def waterfall_3D_plot(self):
         # plot data points in 3D
         for z in range(0, self.data_amount, 1):
-            self.plot_2d_in_3d(self.alpha_data, self.beta_data, z)
+            self.plot_2d_in_3d(self.alpha_data[z], self.beta_data[z], z)
             
         # set waterfall labels
         self.waterfall_ax.set_xlabel("Dateneinträge alpha")
@@ -178,7 +179,6 @@ class Visualizer():
         self.plot_alpha.set_xticklabels(str(self.data_index))
         
         self.plot_beta.set_xticklabels(str(self.data_index))
-
 
     def save_plot(self):
         # save plot as pdf
