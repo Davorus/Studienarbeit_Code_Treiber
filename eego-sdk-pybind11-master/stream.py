@@ -13,7 +13,7 @@ def test_impedance(amplifier):
   print('  channels.... {}'.format(stream.getChannelList()))
   print('  impedances.. {}'.format(list(stream.getData())))
 ###############################################################################
-def test_eeg(amplifier):
+def test_eeg(amplifier, time_to_read):
   rates = amplifier.getSamplingRatesAvailable()
   ref_ranges = amplifier.getReferenceRangesAvailable()
   bip_ranges = amplifier.getBipolarRangesAvailable()
@@ -27,9 +27,9 @@ def test_eeg(amplifier):
   stream_channel_count = len(stream.getChannelList())
 
   with open('%s-eeg.txt' % (amplifier_to_id(amplifier)), 'w') as eeg_file:
-    # get data for 10 seconds, 0.25 seconds in between
+    # get data for n seconds, 0.25 seconds in between
     t0 = time.time()
-    t1 = t0 + 10
+    t1 = t0 + time_to_read
     interval = 0.25
     tnext = t0
     while time.time() < t1:
