@@ -23,7 +23,7 @@ class Visualizer():
         # Initialize data_index to keep track of time points
         self.data_index = list(range(self.max_data_length))
 
-    def show_plot(self):
+    def show_plot(self, alpha_data, beta_data):
         """
         Should show the whole plot with a waterfall diagram
         """
@@ -32,10 +32,10 @@ class Visualizer():
         self.plot_beta.clear()
 
         # plotting alpha data
-        self.plot_alpha.plot(self.data_index[:len(self.que_alpha)], self.que_alpha, color="b")
+        self.plot_alpha.plot(alpha_data, color="b")
         
         # plotting beta data
-        self.plot_beta.plot(self.data_index[:len(self.que_beta)], self.que_beta, color="r")
+        self.plot_beta.plot(beta_data, color="r")
 
         # y axis range for alpha subplot
         self.plot_alpha.set_ylim(-1, 1)
