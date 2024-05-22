@@ -10,19 +10,11 @@ Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll 
 
 class Visualizer():
     def __init__(self):
-        """
-        visualized alpha que
-        all data received for alpha
-        """
+        # visualized alpha que
         self.que_alpha = []
-        self.alpha_data = []
 
-        """
-        visualized beta que
-        all data received for beta
-        """
+        # visualized beta que
         self.que_beta = []
-        self.beta_data = []
 
         # save data amount as array for ticks in x-axe
         self.data_for_ticks = []
@@ -42,28 +34,6 @@ class Visualizer():
         self.figure.tight_layout()
         self.figure.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9, wspace=0.4, hspace=0.4)
 
-        # waterfall plot settings
-        self.waterfall_fig = plt.figure()
-        self.waterfall_ax = self.waterfall_fig.add_subplot(projection="3d")
-        self.waterfall_fig.canvas.manager.set_window_title("3D Darstellung - EEG Messung")
-
-    def plot_2d_in_3d(self, x, y, z):
-        self.waterfall_ax.plot(x, y, zs=z, zdir="z")
-        _2d_col_obj = self.waterfall_ax.fill_between(x, 0.5, y, step = "pre", alpha = 0.1)
-        self.waterfall_ax.add_collections3d(_2d_col_obj, zs = z, zdir = "z")
-
-    def waterfall_3D_plot(self):
-        # plot data points in 3D
-        for z in range(0, self.data_amount, 1):
-            self.plot_2d_in_3d(self.alpha_data[z], self.beta_data[z], z)
-            
-        # set waterfall labels
-        self.waterfall_ax.set_xlabel("Dateneinträge alpha")
-        self.waterfall_ax.set_ylabel("Dateneinträge beta")
-        self.waterfall_ax.set_zlabel("Frequenzgang")
-
-        self.waterfall_ax.plot()
-
     def show_plot(self):
         """
         Should show the whole plot with a waterfall diagram
@@ -72,9 +42,11 @@ class Visualizer():
         self.plot_alpha.clear()
         self.plot_beta.clear()
 
-        # plot all data
-        self.plot_alpha.plot(self.alpha_data, color='b')
-        self.plot_beta.plot(self.beta_data, color='r')
+        # plotting alpha data
+        self.plot_alpha.plot(self.que_alpha, color="b") # TODO: que_alpha ersetzen durch alle Daten aus der Datei
+        
+        # plotting beta data
+        self.plot_beta.plot(self.que_beta, color="r") # TODO: que_beta ersetzen durch alle Daten aus der Datei
 
         # y axis range for alpha subplot
         self.plot_alpha.set_ylim(-1, 1)
@@ -102,7 +74,6 @@ class Visualizer():
             # alpha
             self.que_alpha.pop(0)
             self.que_alpha.append(alpha)
-            self.alpha_data.append(alpha)
 
             # data index
             self.data_index.pop(0)
@@ -110,7 +81,6 @@ class Visualizer():
         else:
             # alpha
             self.que_alpha.append(alpha)
-            self.alpha_data.append(alpha)
 
             # data index
             self.data_index.append(data_number)
@@ -119,10 +89,8 @@ class Visualizer():
         if len(self.que_beta) > self.max_data_length:
             self.que_beta.pop(0)
             self.que_beta.append(beta)
-            self.beta_data.append(beta)
         else:
             self.que_beta.append(beta)
-            self.beta_data.append(beta)
         
         """
         2. Clear the subplots before drawing on them, they have to be reset with the data representation as it bugs then
@@ -175,9 +143,7 @@ class Visualizer():
         plt.pause(0.1)
 
         # set x axis ticks
-
         self.plot_alpha.set_xticklabels(str(self.data_index))
-        
         self.plot_beta.set_xticklabels(str(self.data_index))
 
     def save_plot(self):

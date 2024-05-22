@@ -1,7 +1,8 @@
 import pandas as pd
 from loguru import logger
 from Visualizer import Visualizer
-from Data_Simulator import Data_Simulator
+# from Data_Simulator import Data_Simulator
+from data_simulator import Data_Simulator
 
 """ file_reader Klasse
 Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll diese nicht machen, nur plotten
@@ -30,7 +31,7 @@ class File_Reader():
 if __name__ == "__main__":
     # define amount of data that shall be simulated
     ds = Data_Simulator()
-    ds.write_simulation_data(100)
+    ds.write_simulation_data(40)
 
     # read data and visualize it
     fr = File_Reader()
