@@ -1,12 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
-import numpy as np
-from matplotlib import cm
 from typing import Final
-
-""" Visualizer Klasse
-Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll diese nicht machen, nur plotten und eine schöne Oberfläche bieten
-"""
+import numpy as np
 
 class Visualizer():
     def __init__(self):
@@ -25,6 +20,9 @@ class Visualizer():
         self.figure.tight_layout()
         self.figure.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9, wspace=0.4, hspace=0.4)
 
+        # Initialize data_index to keep track of time points
+        self.data_index = list(range(self.max_data_length))
+
     def show_plot(self):
         """
         Should show the whole plot with a waterfall diagram
@@ -34,16 +32,16 @@ class Visualizer():
         self.plot_beta.clear()
 
         # plotting alpha data
-        self.plot_alpha.plot(self.que_alpha, color="b") # TODO: que_alpha ersetzen durch alle Daten aus der Datei
+        self.plot_alpha.plot(self.data_index[:len(self.que_alpha)], self.que_alpha, color="b")
         
         # plotting beta data
-        self.plot_beta.plot(self.que_beta, color="r") # TODO: que_beta ersetzen durch alle Daten aus der Datei
+        self.plot_beta.plot(self.data_index[:len(self.que_beta)], self.que_beta, color="r")
 
         # y axis range for alpha subplot
-        s# elf.plot_alpha.set_ylim(-1, 1)
+        self.plot_alpha.set_ylim(-1, 1)
 
         # y axis range for beta subplot
-        # self.plot_beta.set_ylim(-1, 1)
+        self.plot_beta.set_ylim(-1, 1)
 
         # inverting x_axis, alpha
         self.plot_alpha.invert_xaxis()
@@ -56,28 +54,58 @@ class Visualizer():
         self.figure.canvas.flush_events()
         plt.show()
         
+    def create_3d_waterfall_diagram(self, alpha: list, beta: list):        
+        alpha_data = alpha
+        beta_data = beta
+
+        # Anzahl der Datenpunkte
+        num_data_points = len(alpha_data)
+    
+        # Y-Werte für die einzelnen Datenpunkte (hier einfach eine aufsteigende Zahlenreihe)
+        y = np.arange(num_data_points)
+    
+        # Erstellen des 3D-Plots
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+
+        # Plotten der Alpha-Daten
+        ax.plot(y, alpha_data, zs=0, zdir='z', label='Alpha', color='b', alpha=0.7)
+
+        # Plotten der Beta-Daten
+        ax.plot(y, beta_data, zs=1, zdir='z', label='Beta', color='r', alpha=0.7)
+
+        # Achsenbeschriftungen
+        ax.set_xlabel("Datenpunkte")
+        ax.set_ylabel("Wert")
+        ax.set_zlabel("Alpha/Beta")
+
+        # Setzen der Z-Achse
+        ax.set_zticks([0, 1])
+        ax.set_zticklabels(['Alpha', 'Beta'])
+
+        # Titel des Plots
+        ax.set_title("3D Wasserfalldiagramm")
+
+        # Anzeigen der Legende
+        ax.legend()
+
+        # Anzeigen des Plots
+        plt.show()
+
     def visualize(self, alpha: float, beta: float):
         """
         1. Check for array length, if it gets too long the plot-process will turn out too slow
         """
-        # appending alpha array and data index
-        if len(self.que_alpha) > self.max_data_length:
-            # alpha
+        if len(self.que_alpha) >= self.max_data_length:
+            # Remove the oldest data point
             self.que_alpha.pop(0)
-            self.que_alpha.append(alpha)
-
-            # data index
-            self.data_index.pop(0)
-        else:
-            # alpha
-            self.que_alpha.append(alpha)
-        
-        # appending beta array
-        if len(self.que_beta) > self.max_data_length:
             self.que_beta.pop(0)
-            self.que_beta.append(beta)
-        else:
-            self.que_beta.append(beta)
+            self.data_index.pop(0)
+
+        # Append the new data points
+        self.que_alpha.append(alpha)
+        self.que_beta.append(beta)
+        self.data_index.append(self.data_index[-1] + 1 if self.data_index else 0)
         
         """
         2. Clear the subplots before drawing on them, they have to be reset with the data representation as it bugs then
@@ -85,7 +113,7 @@ class Visualizer():
         # clear plot alpha
         self.plot_alpha.clear()
 
-        # clear plot alpha
+        # clear plot beta
         self.plot_beta.clear()
         
         """
@@ -107,10 +135,10 @@ class Visualizer():
         4. Now let it plot
         """
         # plotting alpha data
-        self.plot_alpha.plot(self.que_alpha, color="b")
+        self.plot_alpha.plot(self.data_index[:len(self.que_alpha)], self.que_alpha, color="b")
 
         # plotting beta data
-        self.plot_beta.plot(self.que_beta, color="r")
+        self.plot_beta.plot(self.data_index[:len(self.que_beta)], self.que_beta, color="r")
 
         """ 
         5. At lastly it shall draw on its canvas
@@ -119,10 +147,6 @@ class Visualizer():
         self.figure.canvas.draw()
         self.figure.canvas.flush_events()
         plt.pause(0.001)
-
-        # set x axis ticks
-        self.plot_alpha.set_xticklabels(str(self.data_index))
-        self.plot_beta.set_xticklabels(str(self.data_index))
 
     def save_plot(self):
         # save plot as pdf
