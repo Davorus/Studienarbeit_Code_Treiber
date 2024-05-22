@@ -75,7 +75,7 @@ class Visualizer():
         ax.plot(y, beta_data, zs=1, zdir='z', label='Beta', color='r', alpha=0.7)
 
         # Achsenbeschriftungen
-        ax.set_xlabel("Datenpunkte")
+        ax.set_xlabel("Zeit")
         ax.set_ylabel("Wert")
         ax.set_zlabel("Alpha/Beta")
 

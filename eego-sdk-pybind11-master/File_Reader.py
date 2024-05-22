@@ -43,4 +43,7 @@ if __name__ == "__main__":
     # read data and visualize it
     fr = File_Reader()
     fr.read_line_of_file()
-    fr.va.create_3d_waterfall_diagram()
+    
+    # alpha_data = fr.read_column_of_file(0)
+    # beta_data = fr.read_column_of_file(1)
+    # fr.va.create_3d_waterfall_diagram(alpha=alpha_data, beta=beta_data)
