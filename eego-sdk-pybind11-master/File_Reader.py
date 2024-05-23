@@ -27,14 +27,6 @@ class File_Reader():
             line = line.iloc[0]  # Get the first row of the chunk
             logger.info(f"{line}")
             self.va.visualize(float(line[1]), float(line[2]))
-    
-    def show_plots(self):    
-        alpha_data = self.read_column_of_file(0)
-        beta_data = self.read_column_of_file(1)
-        
-        self.va.show_plot(alpha_data=alpha_data, beta_data=beta_data)
-        
-        self.va.create_3d_waterfall_diagram(alpha=alpha_data, beta=beta_data)
 
 if __name__ == "__main__":
     # define amount of data that shall be simulated
