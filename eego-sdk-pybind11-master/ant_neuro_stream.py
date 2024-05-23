@@ -17,7 +17,7 @@ class EEGO_Connection():
             try:
                 st.test_amplifier(amplifier)
 
-                if amplifier.getType() not in self.self.cascaded:
+                if amplifier.getType() not in self.cascaded:
                     self.cascaded[amplifier.getType()] = []
                 self.cascaded[amplifier.getType()].append(amplifier)
             except Exception as e:

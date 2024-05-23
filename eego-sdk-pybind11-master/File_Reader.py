@@ -1,8 +1,10 @@
 import pandas as pd
 from loguru import logger
 from Visualizer import Visualizer
-from data_simulator import Data_Simulator
 from ant_neuro_stream import EEGO_Connection
+
+# Was made for debugging purpose
+# from Data_simulator import Data_Simulator
 
 """ file_reader Klasse
 Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll diese nicht machen, nur plotten
