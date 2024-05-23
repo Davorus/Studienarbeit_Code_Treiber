@@ -14,7 +14,6 @@ logger.add("File_Reader.log")
 
 class File_Reader():
     def __init__(self) -> None:
-        self.file_ptr = open("EE411-012303-000742-eeg.txt", "r")
         open("File_Reader.log", "w").close() # empties log file
         self.va = Visualizer()
         

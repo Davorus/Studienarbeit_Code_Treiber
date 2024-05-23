@@ -24,7 +24,7 @@ class Visualizer():
         # Initialize data_index to keep track of time points
         self.data_index = list(range(self.max_data_length))
 
-    def show_plot(self, alpha_data, beta_data):
+    def show_plot(self, alpha_data: float, beta_data: float):
         """
         Should show the whole plot with a waterfall diagram
         """
