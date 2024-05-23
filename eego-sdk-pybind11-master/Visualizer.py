@@ -163,5 +163,4 @@ class Visualizer():
         new_manager = plt.figure().canvas.manager
         new_manager.canvas.figure = loaded_fig
         loaded_fig.set_canvas(new_manager.canvas)
-        #plt.ion()
         plt.show()

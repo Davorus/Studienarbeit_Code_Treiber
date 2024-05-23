@@ -24,7 +24,6 @@ class File_Reader():
 
     def read_line_of_file(self):
         for line in pd.read_csv("EE411-012303-000742-eeg.txt", sep=" ", chunksize=1, header=None): # now it should read from the simulation stream
-            # print(line) # [] indexing possible
             line = line.iloc[0]  # Get the first row of the chunk
             logger.info(f"{line}")
             self.va.visualize(float(line[1]), float(line[2]))
@@ -36,8 +35,6 @@ class File_Reader():
         self.va.show_plot(alpha_data=alpha_data, beta_data=beta_data)
         
         self.va.create_3d_waterfall_diagram(alpha=alpha_data, beta=beta_data)
-        # after measuring is done save plot
-        # self.va.save_plot()
 
 if __name__ == "__main__":
     # define amount of data that shall be simulated
