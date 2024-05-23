@@ -45,10 +45,12 @@ if __name__ == "__main__":
     # ds.write_simulation_data(40)
 
     eego = EEGO_Connection()
-    eego.open_stream(1)
+    # eego.open_stream(1)
 
     # read data and visualize it
     fr = File_Reader()
-    #fr.read_line_of_file()
+    fr.read_line_of_file()
     
-    fr.show_plots()
+    # fr.show_plots()
+    # fr.va.open_plot("Live_Plot")
+    # fr.va.open_plot("Waterfall_Plot")

@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from typing import Final
 import numpy as np
+import pickle
 
 class Visualizer():
     def __init__(self):
@@ -37,12 +38,6 @@ class Visualizer():
         # plotting beta data
         self.plot_beta.plot(beta_data, color="r")
 
-        # y axis range for alpha subplot
-        self.plot_alpha.set_ylim(-1, 1)
-
-        # y axis range for beta subplot
-        self.plot_beta.set_ylim(-1, 1)
-
         # inverting x_axis, alpha
         self.plot_alpha.invert_xaxis()
 
@@ -54,43 +49,48 @@ class Visualizer():
         self.figure.canvas.flush_events()
         plt.show()
         
+        self.save_plot(figure=self.figure, name="Live_Plot")
+        
     def create_3d_waterfall_diagram(self, alpha: list, beta: list):        
         alpha_data = alpha
         beta_data = beta
 
-        # Anzahl der Datenpunkte
+        # num of data points
         num_data_points = len(alpha_data)
     
-        # Y-Werte für die einzelnen Datenpunkte (hier einfach eine aufsteigende Zahlenreihe)
+        # y values for every data point 
         y = np.arange(num_data_points)
     
-        # Erstellen des 3D-Plots
+        # plot 3D-Plot
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
 
-        # Plotten der Alpha-Daten
+        # plot alpha data
         ax.plot(y, alpha_data, zs=0, zdir='z', label='Alpha', color='b', alpha=0.7)
 
-        # Plotten der Beta-Daten
+        # plot beta data
         ax.plot(y, beta_data, zs=1, zdir='z', label='Beta', color='r', alpha=0.7)
 
-        # Achsenbeschriftungen
+        # label axes
         ax.set_xlabel("Zeit")
         ax.set_ylabel("Wert")
         ax.set_zlabel("Alpha/Beta")
 
-        # Setzen der Z-Achse
+        # set x axe
         ax.set_zticks([0, 1])
         ax.set_zticklabels(['Alpha', 'Beta'])
 
-        # Titel des Plots
+        # title of plot
         ax.set_title("3D Wasserfalldiagramm")
+        fig.canvas.manager.set_window_title("3D Darstellung - EEG Messung")
 
-        # Anzeigen der Legende
+        # show legend
         ax.legend()
 
-        # Anzeigen des Plots
+        # draw plot
         plt.show()
+        
+        self.save_plot(figure=fig, name="Waterfall_Plot")
 
     def visualize(self, alpha: float, beta: float):
         """
@@ -148,8 +148,20 @@ class Visualizer():
         self.figure.canvas.flush_events()
         plt.pause(0.001)
 
-    def save_plot(self):
-        # save plot as pdf
-        pdf = PdfPages("Messung.pdf")
-        pdf.savefig(self.figure)
-        pdf.close()
+    def save_plot(self, figure, name: str):
+        with open(f"{name}.pkl", "wb") as f:
+            pickle.dump(figure, f)
+
+    def open_plot(self, type: str):
+        """
+        type = Live_Plot or Waterfall_Plot
+        """
+        with open(f"{type}.pkl", "rb") as f:
+            loaded_fig = pickle.load(f)
+        
+        # Sicherstellen, dass die Figur von pyplot verwaltet wird
+        new_manager = plt.figure().canvas.manager
+        new_manager.canvas.figure = loaded_fig
+        loaded_fig.set_canvas(new_manager.canvas)
+        #plt.ion()
+        plt.show()
