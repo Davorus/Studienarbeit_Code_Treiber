@@ -2,6 +2,7 @@ import pandas as pd
 from loguru import logger
 from Visualizer import Visualizer
 from ant_neuro_stream import EEGO_Connection
+import queue
 
 # Was made for debugging purpose
 # from Data_simulator import Data_Simulator
@@ -13,9 +14,10 @@ Die Visualizer Klasse selbst ist nur für die Darstellung zuständig. Mehr soll 
 logger.add("File_Reader.log")
 
 class File_Reader():
-    def __init__(self) -> None:
+    def __init__(self, data_queue: queue.Queue) -> None:
         open("File_Reader.log", "w").close() # empties log file
         self.va = Visualizer()
+        self.data_queue = data_queue
         
     def read_column_of_file(self, col: int):
         data = pd.read_csv("EE411-012303-000742-eeg.txt", sep="\s+", header=None)
@@ -25,7 +27,9 @@ class File_Reader():
         for line in pd.read_csv("EE411-012303-000742-eeg.txt", sep=" ", chunksize=1, header=None): # now it should read from the simulation stream
             line = line.iloc[0]  # Get the first row of the chunk
             logger.info(f"{line}")
-            self.va.visualize(float(line[1]), float(line[2]))
+            alpha = float(line[1])
+            beta = float(line[2])
+            self.data_queue.put((alpha, beta))
 
 if __name__ == "__main__":
     # define amount of data that shall be simulated

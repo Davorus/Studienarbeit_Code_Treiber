@@ -1,8 +1,12 @@
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("TkAgg")
 from matplotlib.backends.backend_pdf import PdfPages
 from typing import Final
 import numpy as np
 import pickle
+import queue
+
 
 class Visualizer():
     def __init__(self):
@@ -92,61 +96,67 @@ class Visualizer():
         
         self.save_plot(figure=fig, name="Waterfall_Plot")
 
-    def visualize(self, alpha: float, beta: float):
-        """
-        1. Check for array length, if it gets too long the plot-process will turn out too slow
-        """
-        if len(self.que_alpha) >= self.max_data_length:
-            # Remove the oldest data point
-            self.que_alpha.pop(0)
-            self.que_beta.pop(0)
-            self.data_index.pop(0)
+    def visualize(self, data_queue: queue.Queue):
+        while True:
+            try:
+                alpha, beta = data_queue.get(timeout=1)
+                """
+                1. Check for array length, if it gets too long the plot-process will turn out too slow
+                """
+                if len(self.que_alpha) >= self.max_data_length:
+                    # Remove the oldest data point
+                    self.que_alpha.pop(0)
+                    self.que_beta.pop(0)
+                    self.data_index.pop(0)
+                    
+                # Append the new data points
+                self.que_alpha.append(alpha)
+                self.que_beta.append(beta)
+                self.data_index.append(self.data_index[-1] + 1 if self.data_index else 0)
+                
+                """
+                2. Clear the subplots before drawing on them, they have to be reset with the data representation as it bugs then
+                """
+                # clear plot alpha
+                self.plot_alpha.clear()
 
-        # Append the new data points
-        self.que_alpha.append(alpha)
-        self.que_beta.append(beta)
-        self.data_index.append(self.data_index[-1] + 1 if self.data_index else 0)
-        
-        """
-        2. Clear the subplots before drawing on them, they have to be reset with the data representation as it bugs then
-        """
-        # clear plot alpha
-        self.plot_alpha.clear()
+                # clear plot beta
+                self.plot_beta.clear()
+                
+                """
+                3. Settings for the subplots
+                """
+                # inverting x_axis, alpha
+                self.plot_alpha.invert_xaxis()
 
-        # clear plot beta
-        self.plot_beta.clear()
-        
-        """
-        3. Settings for the subplots
-        """
-        # inverting x_axis, alpha
-        self.plot_alpha.invert_xaxis()
+                # inverting x_axis, beta
+                self.plot_beta.invert_xaxis()
 
-        # inverting x_axis, beta
-        self.plot_beta.invert_xaxis()
+                # title set alpha
+                self.plot_alpha.set_title("Alpha Daten")
 
-        # title set alpha
-        self.plot_alpha.set_title("Alpha Daten")
+                # title set beta
+                self.plot_beta.set_title("Beta Daten")
+                
+                """
+                4. Now let it plot
+                """
+                # plotting alpha data
+                self.plot_alpha.plot(self.data_index[:len(self.que_alpha)], self.que_alpha, color="b")
 
-        # title set beta
-        self.plot_beta.set_title("Beta Daten")
+                # plotting beta data
+                self.plot_beta.plot(self.data_index[:len(self.que_beta)], self.que_beta, color="r")
 
-        """
-        4. Now let it plot
-        """
-        # plotting alpha data
-        self.plot_alpha.plot(self.data_index[:len(self.que_alpha)], self.que_alpha, color="b")
-
-        # plotting beta data
-        self.plot_beta.plot(self.data_index[:len(self.que_beta)], self.que_beta, color="r")
-
-        """ 
-        5. At lastly it shall draw on its canvas
-        """
-        # draw, pause and clear
-        self.figure.canvas.draw()
-        self.figure.canvas.flush_events()
-        plt.pause(0.001)
+                """ 
+                5. At lastly it shall draw on its canvas
+                """
+                # draw, pause and clear
+                self.figure.canvas.draw()
+                self.figure.canvas.flush_events()
+                plt.pause(0.001)
+                    
+            except queue.Empty:
+                break
 
     def save_plot(self, figure, name: str):
         with open(f"{name}.pkl", "wb") as f:
