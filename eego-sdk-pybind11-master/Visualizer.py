@@ -28,6 +28,11 @@ class Visualizer():
         # Initialize data_index to keep track of time points
         self.data_index = list(range(self.max_data_length))
 
+    def perform_fft(self, data: list):
+        array = np.array(self.data)
+        fft_array = np.fft(array)
+        return fft_array
+        
     def show_plot(self, alpha_data: float, beta_data: float):
         """
         Should show the whole plot with a waterfall diagram
@@ -37,10 +42,12 @@ class Visualizer():
         self.plot_beta.clear()
 
         # plotting alpha data
-        self.plot_alpha.plot(alpha_data, color="b")
+        alpha = self.perform_fft(alpha_data)
+        self.plot_alpha.plot(alpha, color="b")
         
         # plotting beta data
-        self.plot_beta.plot(beta_data, color="r")
+        beta = self.perform_fft(beta_data)
+        self.plot_beta.plot(beta, color="r")
 
         # inverting x_axis, alpha
         self.plot_alpha.invert_xaxis()
@@ -56,8 +63,8 @@ class Visualizer():
         self.save_plot(figure=self.figure, name="Live_Plot")
         
     def create_3d_waterfall_diagram(self, alpha: list, beta: list):        
-        alpha_data = alpha
-        beta_data = beta
+        alpha_data = self.perform_fft(alpha)
+        beta_data = self.perform_fft(beta)
 
         # num of data points
         num_data_points = len(alpha_data)
